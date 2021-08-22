@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-
 const PersonSchema=mongoose.Schema({
     Name:{
         type:String,
@@ -12,7 +11,13 @@ const PersonSchema=mongoose.Schema({
     Created_at:{
         type:Date,
         default:Date.now,
+    },
+    
+    DetailReference:{
+       type:mongoose.Schema.Types.ObjectId,
+       ref:'Details'
     }
+
 
 });
 

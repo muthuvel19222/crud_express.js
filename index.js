@@ -12,7 +12,7 @@ require('dotenv/config');
     next();
 }); */
 
-const myperson=[
+/* const myperson=[
     {
         id:uuid.v4(),
         name:'muthuvel',
@@ -29,7 +29,7 @@ const myperson=[
         age:'26',
     }
 ];
-
+ */
 //body-parser
 app.use(express.json());
 
@@ -60,8 +60,11 @@ app.post('/',async(req,res)=>{
 }); 
 */
 
-const PersonRouter=require('./Personroute');
+const PersonRouter=require('./router/Personroute');
 app.use('/persons',PersonRouter);   
+
+const DetailsRouter=require('./router/Detailsroute');
+app.use('/details',DetailsRouter);   
 
 const PORT=process.env.PORT ||8080
 app.listen(PORT, ()=>{

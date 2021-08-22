@@ -1,23 +1,17 @@
 const express=require('express');
-const { find } = require('./PersonSchema');
 const router=express.Router();
-const Persons=require('./PersonSchema')
-
-
-
-
+const Persons=require('../model/PersonSchema')
 
 /* router.get('/dude',(req,res)=>{
     res.json("router is running successfully");
 }); */
-
-
 
 router.post('/',async (req,res)=>{
     try{
 const postPerson=await new Persons({
         Name:req.body.Name,
         Age:req.body.Age,
+        DetailReference:req.body.City,
     });
     const savePerson=await postPerson.save();
     res.status(200).json(savePerson);
@@ -32,7 +26,7 @@ const postPerson=await new Persons({
 
 router.get('/',async (req,res)=>{
     try{
-    const getAll=await Persons.find();
+    const getAll=await Persons.find().populate('DetailReference');
     res.status(200).json(getAll);
     }
     catch(err){
